@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom'
 import history from "./helpers/createBrowserHistory"
+import { BASE_URL } from "./constants/EndPoints_API"
 
 import { authHeader } from "./helpers/auth-header"
 import reportWebVitals from './reportWebVitals';
@@ -23,7 +24,7 @@ const getHeadersKeys = () => {
 
 export const client = () => {
   return axios.create({
-    baseURL: 'http://localhost:3000/api/v1/',
+    baseURL: BASE_URL,
     headers: getHeadersKeys()
   })
 }
