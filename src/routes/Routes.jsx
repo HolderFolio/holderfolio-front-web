@@ -10,6 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+const LoginPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
 const Routes = () => {
   return (
@@ -19,14 +20,6 @@ const Routes = () => {
           <Route exact path="/">
             <HomePage />
           </Route>
-          {/* AUTH */}
-          {/* <Route path="/connexion" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/forgetpassword" component={ForgetPasswordPage} /> */}
-          {/* HOMEPAGE */}
-          {/* <Route path="/allocation" component={AllocationPage} />
-          <Route path="/portfolio" component={PortFolioPage} /> {"C'EST LA HOMEPAGE"} */}
-          {/* SIDEBAR */}
           <Route path="/not-found">
             <NotFoundPage />
           </Route>

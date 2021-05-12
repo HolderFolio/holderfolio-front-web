@@ -1,0 +1,58 @@
+:root {
+    // backgrounds
+    --bg-light: #ffffff;
+    --bg-medium: #f8f8f8;
+    --bg-dark: #eeeeee;
+    --bg-white-light: #ffffff;
+    --bg-white-medium: #f8f8f8;
+    --bg-white-dark: #eeeeee;
+    --bg-black-light: #303030;
+    --bg-black-medium: #222222;
+    --bg-black-dark: #1d1d1d;
+  
+    // primary color
+    --primary-pale: #e4fffd;
+    --primary-light: #50cec5;
+    --primary-medium: #36bfb6;
+    --primary-dark: #2d9f98;
+  
+    // secondary color
+    --secondary-pale: #ffc6b5;
+    --secondary-light: #f7673b;
+    --secondary-medium: #f6511d;
+    --secondary-dark: #eb3e0a;
+  
+    // accent color
+    --accent-pale: #fff9da;
+    --accent-light: #ffe770;
+    --accent-medium: #ffdd33;
+    --accent-dark: #ffd60a;
+  
+    // greys
+    --grey-light: #eeeeee;
+    --grey-medium: #e4e4e4;
+    --grey-dark: #c0c0c0;
+    --grey-darker: #868686;
+  
+    // blacks
+    --black-light: #3d3d3d;
+    --black-medium: #2c2c2c;
+    --black-dark: #1d1d1d;
+    --black-darker: #111111;
+  
+    // texts colors
+    --text-color: #232323;
+    --text-white: #eeeeee;
+    --text-grey: #aaaaaa;
+    --text-black: #232323;
+  
+    // overlays
+    --black-overlay: rgba(0, 0, 0, 0.2);
+    --black-overlay-dark: rgba(0, 0, 0, 0.8);
+  
+    // social
+    --red-liked: rgb(216, 54, 103);
+    --error: rgb(202, 28, 51);
+    --success: rgb(14, 143, 46);
+    --info: rgb(211, 171, 41);
+  }

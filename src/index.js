@@ -8,9 +8,10 @@ import history from "./helpers/createBrowserHistory"
 
 import { authHeader } from "./helpers/auth-header"
 import reportWebVitals from './reportWebVitals';
+import { API_URL } from "../src/constants/EndPoints_API"
 
 import App from './App';
-import './index.css';
+import './index.scss';
 
 // axios settings
 const getHeadersKeys = () => {
@@ -23,7 +24,7 @@ const getHeadersKeys = () => {
 
 export const client = () => {
   return axios.create({
-    baseURL: 'http://localhost:3000/api/v1/',
+    baseURL: API_URL,
     headers: getHeadersKeys()
   })
 }
