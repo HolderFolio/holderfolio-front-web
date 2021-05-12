@@ -1,0 +1,39 @@
+@import "./style/all";
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+
+  &-offline {
+    &__wrapper {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: $padding-lg;
+      // justify-content: center;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    max-width: 450px;
+    padding: $padding-lg;
+    border-radius: $radius-md;
+    margin-top: 2rem;
+    box-shadow: $shadow-light;
+  }
+
+  &__switch {
+    cursor: pointer;
+    transition: $transition;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+
+    &:hover {
+      color: var(--primary-light);
+    }
+  }
+}
