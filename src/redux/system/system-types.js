@@ -1,0 +1,5 @@
+export const SystemActionTypes = {
+    TOGGLE_DRAWER: 'TOGGLE_DRAWER',
+    TOGGLE_TAB_ADD: 'TOGGLE_TAB_ADD',
+    TOGGLE_THEME_COLOR: 'TOGGLE_THEME_COLOR'
+}
