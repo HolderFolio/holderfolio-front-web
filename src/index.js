@@ -24,7 +24,7 @@ const getHeadersKeys = () => {
 
 export const client = () => {
   return axios.create({
-    baseURL: BASE_URL,
+    baseURL: 'http://localhost:3001/api/v1/',
     headers: getHeadersKeys()
   })
 }
