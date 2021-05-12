@@ -32,7 +32,7 @@ const Login = () => {
     setIsLoading(false);
   };
 
-  const handleClick = async () => {
+  const handleClick =  () => {
     dispatch(AUTHACTION.loginGoogleAction())
   }
 

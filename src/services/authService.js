@@ -12,8 +12,9 @@ const loginService = (email, password) => {
 
 const loginGoogleService = token => {
   const data = { 'idToken': token }
-  return client().post(AUTH_ENDPOINTS.LOGINWITHGOOGLE, data).then(res => {
-    console.log(res)
+  console.log(data)
+  return client().post(AUTH_ENDPOINTS.LOGINWITHGOOGLE, token).then(res => {
+    
   }).catch(err => {
   })
 }
