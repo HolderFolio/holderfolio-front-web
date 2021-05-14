@@ -29,25 +29,7 @@ export const client = () => {
   })
 }
 
-// export const client = async () => {
-//   if (process.env.NODE_ENV === "development") {
-//     return axios.create({
-//       baseURL: 'http://localhost:3000/api/v1/',
-//       headers: await headersKeys,
 
-//     })
-//   } else if (process.env.NODE_ENV === "devonline") {
-//     return axios.create({
-//       baseURL: 'https://holderfolio-backend-dev.herokuapp.com/',
-//       headers: await headersKeys,
-//     })
-//   } else if (process.env.NODE_ENV === "production") {
-//     return axios.create({
-//       baseURL: 'https://holderfolio-backend.herokuapp.com/',
-//       headers: await headersKeys,
-//     });
-//   }
-// }
 
 ReactDOM.render(
   <React.StrictMode>

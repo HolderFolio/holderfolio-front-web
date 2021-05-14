@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { setCurrentUserAction } from "../../redux/user/user-actions";
 import { AUTH } from "../../services/authService";
 import CustomButton from "../CustomButton/CustomButton";
+import { setUserToLocalStorage } from "../../helpers/setUser"
 
 import "./Auth.scss";
 
@@ -24,8 +25,7 @@ const Signup = () => {
       const response = await AUTH.signupService(name, email, password, passwordConfirm);
       if (response) {
         dispatch(setCurrentUserAction(response.data.data.user));
-        localStorage.setItem("jwt", JSON.stringify(response.data.token));
-        localStorage.setItem("user", JSON.stringify(response.data.data.user));
+        setUserToLocalStorage(response)
       }
     } catch (err) {
       setError(err?.response?.data?.message);
