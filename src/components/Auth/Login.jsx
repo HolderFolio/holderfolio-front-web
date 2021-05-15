@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Modal from "react-modal";
-
-import { setCurrentUserAction } from "../../redux/user/user-actions";
-import { AUTH } from "../../services/authService";
 import { AUTHACTION } from "../../redux/auth/auth-action";
-
 import CustomButton from "../CustomButton/CustomButton";
-import { setUserToLocalStorage } from "../../helpers/setUser";
-import history from "../../helpers/createBrowserHistory";
 
 import "./Auth.scss";
 import ContainerModalLogin from "../modals/ContainerModalLogin";

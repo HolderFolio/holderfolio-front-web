@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setCurrentUserAction } from "../../redux/user/user-actions";
-import { AUTH } from "../../services/authService";
 import CustomButton from "../CustomButton/CustomButton";
-import { setUserToLocalStorage } from "../../helpers/setUser";
 
 import "./Auth.scss";
 import { AUTHACTION } from "../../redux/auth/auth-action";

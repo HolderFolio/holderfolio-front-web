@@ -53,8 +53,8 @@ const loginGoogleAction = () => {
 }
 
 
-const SetUserError = err => ({
-  type: AuthActionTypes.ERROR_LOGIN_USER,
+const setAuthError = err => ({
+  type: AuthActionTypes.AUTH_ERROR,
   payload: err,
 })
 

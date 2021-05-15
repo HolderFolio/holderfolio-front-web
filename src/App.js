@@ -1,10 +1,10 @@
 import './App.scss';
 import Routes from './routes/Routes';
 import { useSelector } from 'react-redux';
-import { selectCurrentUser } from './redux/user/user-selectors';
 import Login from './components/Auth/Login';
 import { useState } from 'react';
 import Signup from './components/Auth/Signup';
+import { selectCurrentUser } from './redux/auth/auth-selectors';
 
 function App() {
   const currentUser = useSelector(selectCurrentUser)

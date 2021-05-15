@@ -1,8 +1,14 @@
 import { combineReducers } from 'redux'
-import layoutReducer from './layout/layout-reducer'
-import userReducer from './user/user-reducer'
+import systemReducer from './system/system-reducer'
+import authReducer from './auth/auth-reducer'
+import portfolioReducer from './portfolio/portfolio-reducer'
+import exchangeReducer from './exchange/exchange-reducer'
+import assetReducer from './asset/asset-reducer'
 
 export default combineReducers({
-  user: userReducer,
-  layout: layoutReducer
+  auth: authReducer,
+  layout: systemReducer,
+  portfolio: portfolioReducer,
+  exchange: exchangeReducer,
+  asset: assetReducer
 })
