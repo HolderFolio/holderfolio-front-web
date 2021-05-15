@@ -74,12 +74,11 @@ const registersuccess = data => ({
 })
 
 
-const logout = () => dispatch => {
-  AUTH.logout().then(user => {
+const logoutAction = () => dispatch => {
+  AUTH.logoutService().then(user => {
     dispatch(logoutSuccess())
   })
 }
-
 
 const logoutSuccess = () => ({
   type: AuthActionTypes.LOGOUT_SUCCESS,
@@ -91,7 +90,7 @@ const logoutSuccess = () => ({
 export const AUTHACTION = {
   loginManuel: loginManuel,
   setCurrentUser: setCurrentUser,
-  logout: logout,
+  logoutAction: logoutAction,
   loginLoadingAction: loginLoadingAction,
   registerAction: registerAction,
   loginGoogleAction: loginGoogleAction

@@ -7,8 +7,8 @@ import { AUTH } from "../../services/authService";
 import { AUTHACTION } from "../../redux/auth/auth-action"
 
 import CustomButton from "../CustomButton/CustomButton";
-import  { setUserToLocalStorage } from "../../helpers/setUser"
-import history from "../../helpers/createBrowserHistory"
+import  { setUserToLocalStorage, cleanUser } from "../../helpers/setUser"
+
 
 import "./Auth.scss";
 import ContainerModalLogin from "../modals/ContainerModalLogin";
@@ -60,16 +60,14 @@ const Login = () => {
         setUserToLocalStorage(response)
       }
     } catch (err) {
+      cleanUser()
       setError(err?.response?.data?.message);
     }
     setIsLoading(false);
   };
 
-  const  handleClick = async () => {
-    dispatch(AUTHACTION.loginGoogleAction()).then(res => {
-      res && history.push('/')
-      res && history.go()
-    })
+  const handleClick = async () => {
+    dispatch(AUTHACTION.loginGoogleAction())
   }
 
 
