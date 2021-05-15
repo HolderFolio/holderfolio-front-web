@@ -1,21 +1,15 @@
 import { AuthActionTypes } from './auth-types'
 import { AUTH } from '../../services/authService'
 import { auth, provider } from '../../services/firebaseService';
+import { setUserToLocalStorage } from '../../helpers/setUser';
 
 
 
-const setCurrentUser = user => {
-  return dispatch => {
-    dispatch(setCurrentUserSucces(user))
-    return true
-  }
-}
-
-
-const setCurrentUserSucces = user => ({
+export const setCurrentUserAction = (user) => ({
   type: AuthActionTypes.SET_CURRENT_USER,
   payload: user,
 });
+
 
 
 const loginLoadingAction = toggle => ({
@@ -24,18 +18,18 @@ const loginLoadingAction = toggle => ({
 });
 
 
-const loginManuel = (email, password) => {
+const loginManuelAction = (email, password) => {
   return dispatch => {
-    var data = { email, password }
-    return AUTH.loginManuel(data).then(user => {
+    return AUTH.loginService(email, password).then(res => {
       try {
-        if (user.data.status === 'success' || user.data.status === 200) {
-          dispatch(setCurrentUserSucces(user.data))
+        if (res?.data?.status === 'success' || res?.data?.status === 200) {
+          dispatch(setCurrentUserAction(res?.data?.data?.user))
+          setUserToLocalStorage(res)
         }
-      } catch {
-        dispatch(SetUserError(user))
+      } catch (err) {
+        throw err
       }
-    })
+    }).catch(err => err)
   }
 }
 
@@ -43,11 +37,18 @@ const loginManuel = (email, password) => {
 const loginGoogleAction = () => {
   return dispatch => {
     return auth().signInWithPopup(provider).then(async result => {
-      var token = result.credential.idToken
-      AUTH.loginGoogleService(token).then(res => {
-        return res
-      })
-    })
+      try {
+        var token = result.credential.idToken
+        const res = await AUTH.loginGoogleService(token)
+        console.log(res)
+        if (res) {
+          dispatch(setCurrentUserAction(res?.data?.data?.user))
+          setUserToLocalStorage(res)
+        }
+      } catch (error) {
+        throw error
+      }
+    }).catch(err => err)
   }
 }
 
@@ -58,20 +59,22 @@ const SetUserError = err => ({
 })
 
 
-const registerAction = data => {
+const signupAction = (name, email, password, passwordConfirm) => {
   return dispatch => {
-    return AUTH.register(data).then(newUser => {
-      dispatch(registersuccess(newUser))
-    }).catch(res => {
-    })
+    return AUTH.signupService(name, email, password, passwordConfirm).then(res => {
+      try {
+        if (res?.data?.status === 'success' || res?.data?.status === 200) {
+          dispatch(setCurrentUserAction(res?.data?.data?.user))
+          setUserToLocalStorage(res)
+        }
+      } catch (err) {
+        throw err
+      }
 
+    }).catch(err => err)
   }
 }
 
-const registersuccess = data => ({
-  type: AuthActionTypes.REGISTER_SUCCES,
-  payload: data
-})
 
 
 const logout = () => dispatch => {
@@ -89,10 +92,10 @@ const logoutSuccess = () => ({
 
 
 export const AUTHACTION = {
-  loginManuel: loginManuel,
-  setCurrentUser: setCurrentUser,
+  loginManuelAction: loginManuelAction,
+  setCurrentUserAction: setCurrentUserAction,
   logout: logout,
   loginLoadingAction: loginLoadingAction,
-  registerAction: registerAction,
+  signupAction: signupAction,
   loginGoogleAction: loginGoogleAction
 }

@@ -1,27 +1,22 @@
 import { client } from ".."
 import { AUTH_ENDPOINTS } from "../constants/EndPoints_API"
-import  { setUserToLocalStorage } from "../helpers/setUser"
+import { setUserToLocalStorage } from "../helpers/setUser"
 import history from "../helpers/createBrowserHistory"
 
 const loginService = (email, password) => {
-  const data = {
+  const data = JSON.stringify({
     email,
     password
-  }
+  })
   return client().post(AUTH_ENDPOINTS.LOGIN, data).then(res => res).catch(error => Promise.reject(error))
 }
 
 const loginGoogleService = token => {
   const data = { 'idToken': token }
-  return client().post(AUTH_ENDPOINTS.LOGINWITHGOOGLE, data).then(user => {
-    if (user) {
-      setUserToLocalStorage(user)
-      history.push('/')
-    }
-    
-    return true
+  return client().post(AUTH_ENDPOINTS.LOGINWITHGOOGLE, data).then(res => {
+    return res
   }).catch(err => {
-    console.log(err)
+    throw err
   })
 }
 

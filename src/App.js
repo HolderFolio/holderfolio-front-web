@@ -14,8 +14,12 @@ function App() {
     return (
       <div className="App App-offline">
         <div className="App-offline__wrapper">
-          <h1>Welcome to HolderFolio !</h1>
-          <p>Please log in or create a new account to get access to the website's functionnalities.</p>
+          <h1>HOLDERFOLIO</h1>
+          {isLogin ? (
+            <p>Sign in to your account</p>
+          ) : (
+            <p>Create a new account</p>
+          )}
           <div className="App__form">
             {isLogin ? (
               <>
