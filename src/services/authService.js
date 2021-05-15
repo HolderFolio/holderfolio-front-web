@@ -1,7 +1,6 @@
 import { client } from ".."
 import { AUTH_ENDPOINTS } from "../constants/EndPoints_API"
 import { setUserToLocalStorage, cleanUser } from "../helpers/setUser"
-import history from "../helpers/createBrowserHistory"
 
 const loginService = (email, password) => {
   const data = {

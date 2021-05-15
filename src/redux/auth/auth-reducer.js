@@ -1,39 +1,28 @@
 import { AuthActionTypes } from './auth-types'
 
+let currentUser = JSON.parse(localStorage.getItem('user'));
+
 const INITIAL_STATE = {
-    currentUser: null,
-    userRole: '',
-    userToken: '',
-    userSettings: '', 
-    userPreferences: '',
-    errors: {
-        user: '',
-    },
-    loginLoading: true,
+  currentUser: currentUser || null,
+  errors: null,
 };
-const AuthReducer = (state = INITIAL_STATE, action) => {
 
-    switch (action.type) {
-        case AuthActionTypes.SET_CURRENT_USER:
-            return {
-                ...state, 
-                currentUser:  action.payload ? action.payload.data.user : null,
-                userToken: action.payload ?  action.payload.token : null,
-                userRole: action.payload ? action.payload.data.user.role  : '' ,
-                userSettings: action.payload ? action.payload.data.user.settings  : '' ,
-                userPreferences: action.payload ? action.payload.data.user.preferences : '' , 
-                errors: null 
-            };
-        case AuthActionTypes.LOGOUT_SUCCESS:
-            return { ...state, currentUser: action.payload, errors: null };
-        case AuthActionTypes.LOGIN_LOADING:
-            return { ...state, loginLoading: action.payload };
-        case AuthActionTypes.ERROR_LOGIN_USER:
-            return { ...state, errors: {user: action.payload } };
+const userReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case AuthActionTypes.SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+        errors: null
+      };
+    case AuthActionTypes.AUTH_ERROR:
+      return {
+        ...state,
+        errors: action.payload
+      };
+    default:
+      return state;
+  }
+};
 
-        default:
-            return state 
-    }
-}
-
-export default AuthReducer;
+export default userReducer;

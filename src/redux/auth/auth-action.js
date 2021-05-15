@@ -75,10 +75,12 @@ const registersuccess = data => ({
 
 
 const logoutAction = () => dispatch => {
+ 
   AUTH.logoutService().then(user => {
     dispatch(logoutSuccess())
   })
 }
+
 
 const logoutSuccess = () => ({
   type: AuthActionTypes.LOGOUT_SUCCESS,

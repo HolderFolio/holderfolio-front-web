@@ -8,5 +8,27 @@
 
   .CustomButton {
     margin-top: 1rem;
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    svg {
+      margin-right: 1rem;
+    }
+  }
+
+  &__forgot {
+    text-decoration: underline;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-light);
+    }
+  }
+
+  .error-text {
+    margin-bottom: 1rem;
   }
 }

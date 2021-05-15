@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setCurrentUserAction } from "../../redux/user/user-actions";
-import { AUTH } from "../../services/authService";
 import CustomButton from "../CustomButton/CustomButton";
-import { setUserToLocalStorage } from "../../helpers/setUser"
 
 import "./Auth.scss";
+import { AUTHACTION } from "../../redux/auth/auth-action";
+import { IoLogoGoogle } from "react-icons/io5";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -15,6 +14,7 @@ const Signup = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     setError("");
@@ -22,15 +22,24 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await AUTH.signupService(name, email, password, passwordConfirm);
-      if (response) {
-        dispatch(setCurrentUserAction(response.data.data.user));
-        setUserToLocalStorage(response)
-      }
+      await dispatch(AUTHACTION.signupAction(name, email, password, passwordConfirm));
     } catch (err) {
       setError(err?.response?.data?.message);
     }
     setIsLoading(false);
+  };
+
+  const handleGoogleClick = async (e) => {
+    setError("");
+    setIsGoogleLoading(true);
+    e.preventDefault();
+
+    try {
+      await dispatch(AUTHACTION.loginGoogleAction());
+    } catch (err) {
+      setError("An error occured with your Google account. Please try again or use manual login.");
+    }
+    setIsGoogleLoading(false);
   };
 
   return (
@@ -50,10 +59,14 @@ const Signup = () => {
         onChange={(e) => setPasswordConfirm(e.target.value)}
         required
       />
-      {error && <p>{error}</p>}
+      <p className="error-text">{error ? error : ""}</p>
 
       <CustomButton level="primary" type="submit">
         {isLoading ? "Loading..." : "Create Account"}
+      </CustomButton>
+      <CustomButton onClick={(e) => handleGoogleClick(e)} level="transparent">
+        <IoLogoGoogle />
+        {isGoogleLoading ? "Loading..." : "Login with Google"}
       </CustomButton>
     </form>
   );
