@@ -2,6 +2,7 @@ import { AuthActionTypes } from './auth-types'
 import { AUTH } from '../../services/authService'
 import { auth, provider } from '../../services/firebaseService';
 import { setUserToLocalStorage } from '../../helpers/setUser';
+import { client } from '../..';
 
 
 
@@ -29,7 +30,7 @@ const loginManuelAction = (email, password) => {
       } catch (err) {
         throw err
       }
-    }).catch(err => err)
+    })
   }
 }
 
@@ -48,7 +49,7 @@ const loginGoogleAction = () => {
       } catch (error) {
         throw error
       }
-    }).catch(err => err)
+    })
   }
 }
 
@@ -71,7 +72,7 @@ const signupAction = (name, email, password, passwordConfirm) => {
         throw err
       }
 
-    }).catch(err => err)
+    })
   }
 }
 
@@ -90,6 +91,63 @@ const logoutSuccess = () => ({
 })
 
 
+export const updateUserAtion = (newSettingsObj) => {
+  return async dispatch => {
+
+    try {
+      let updatedField;
+      if (newSettingsObj.avatar) {
+        updatedField = new FormData()
+        updatedField.append('avatar', newSettingsObj.avatar)
+      } else {
+        updatedField = JSON.stringify(newSettingsObj)
+      }
+
+      const res = await client().patch(`users/updateMe`, updatedField)
+
+      if (res.status >= 300) {
+        throw new Error('An error occured...')
+      }
+
+
+      if (res.data.data.user) {
+        dispatch(setCurrentUserAction(res.data.data.user))
+        localStorage.setItem('user', JSON.stringify(res.data.data.user))
+        return res.data.data.user
+      }
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+
+export const updateMyPasswordAtion = (passwordsObj) => {
+  return async dispatch => {
+
+    try {
+
+      const res = await client().patch(`users/updateMyPassword`, JSON.stringify(passwordsObj))
+
+      if (res.status >= 300) {
+        throw new Error('An error occured...')
+      }
+
+      if (res.data.data.user) {
+        dispatch(setCurrentUserAction(res.data.data.user))
+        localStorage.setItem('user', JSON.stringify(res.data.data.user))
+      }
+
+      if (res.data.token) {
+        localStorage.setItem('jwt', JSON.stringify(res.data.token))
+      }
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+
 
 export const AUTHACTION = {
   loginManuelAction: loginManuelAction,
@@ -97,5 +155,7 @@ export const AUTHACTION = {
   logout: logout,
   loginLoadingAction: loginLoadingAction,
   signupAction: signupAction,
-  loginGoogleAction: loginGoogleAction
+  loginGoogleAction: loginGoogleAction,
+  updateMyPasswordAtion: updateMyPasswordAtion,
+  updateUserAtion: updateUserAtion
 }

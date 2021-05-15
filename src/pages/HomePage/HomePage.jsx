@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
-  // const dispatch = useDispatch();
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState();
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   // const recipesArray = useSelector(selectRecipesArray);
 
   // const fetchRecipes = useCallback(async () => {
@@ -22,9 +22,9 @@ const HomePage = () => {
   //   fetchRecipes().then(() => setIsLoading(false));
   // }, [fetchRecipes]);
 
-  // if (error) {
-  //   return <p>Une erreur est survenue : {error || "essayez de rafraichir la page ou de vous reconnecter."}</p>;
-  // }
+  if (error) {
+    return <p>An error occured: {error || "please try to refresh the page or log in again."}</p>;
+  }
 
   return <div className="HomePage">Hello homepage</div>;
 };

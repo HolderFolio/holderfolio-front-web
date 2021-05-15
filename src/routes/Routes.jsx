@@ -10,7 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
-const LoginPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+const SettingsPage = lazy(() => import("../pages/SettingsPage/SettingsPage"));
 
 const Routes = () => {
   return (
@@ -19,6 +19,9 @@ const Routes = () => {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route exact path="/settings">
+            <SettingsPage />
           </Route>
           <Route path="/not-found">
             <NotFoundPage />

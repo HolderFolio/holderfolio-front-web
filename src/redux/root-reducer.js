@@ -7,7 +7,7 @@ import assetReducer from './asset/asset-reducer'
 
 export default combineReducers({
   auth: authReducer,
-  layout: systemReducer,
+  system: systemReducer,
   portfolio: portfolioReducer,
   exchange: exchangeReducer,
   asset: assetReducer

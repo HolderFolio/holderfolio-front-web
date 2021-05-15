@@ -58,9 +58,10 @@
     &:hover,
     &:focus {
       color: var(--secondary-medium);
+      border: 2px solid var(--secondary-medium);
     }
     &:active {
-      border: 2px solid var(--secondary-medium);
+      background-color: var(--secondary-pale);
     }
   }
 }

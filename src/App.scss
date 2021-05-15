@@ -41,4 +41,68 @@
       color: var(--primary-light);
     }
   }
+
+  &__nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+
+    &:not(.active) {
+      background-color: transparent;
+      transition: background-color 0.05s ease 0s;
+    }
+
+    & .Navigation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      transition: transform 0.2s ease;
+    }
+
+    &.active {
+      transform: translateX(0);
+      background-color: var(--black-overlay);
+      transition: background-color 0.05s ease;
+
+      & .Navigation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__main {
+    background-color: var(--bg-dark);
+    max-height: 100vh;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+
+    &--top {
+      padding: 1rem $padding-lg;
+      width: 100%;
+      display: flex;
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: var(--bg-dark);
+      // z-index: 90;
+
+      & h1 {
+        margin-bottom: 0;
+        margin-left: 2rem;
+      }
+    }
+
+    &--menu {
+      @include menu-logo;
+    }
+  }
 }

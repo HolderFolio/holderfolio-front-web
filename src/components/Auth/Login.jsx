@@ -8,23 +8,8 @@ import "./Auth.scss";
 import ContainerModalLogin from "../modals/ContainerModalLogin";
 
 import { IoLogoGoogle } from "react-icons/io5";
+import { customStyles } from "../../helpers/modal-styles";
 
-///////////////////////// POUR MODAL: ajoute le css comme tu veux   /////////////////////////////
-const customStyles = {
-  overlay: {
-    backgroundColor: "rgba(30,30,30, 0.8)",
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    maxWidth: "500px",
-    backgroundColor: "#f8f8f8",
-  },
-};
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,6 +40,7 @@ const Login = () => {
     try {
       await dispatch(AUTHACTION.loginManuelAction(email, password));
     } catch (err) {
+      console.log(err);
       setError(err?.response?.data?.message);
     }
     setIsLoading(false);

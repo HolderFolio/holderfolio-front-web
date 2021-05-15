@@ -5,9 +5,13 @@ import Login from './components/Auth/Login';
 import { useState } from 'react';
 import Signup from './components/Auth/Signup';
 import { selectCurrentUser } from './redux/auth/auth-selectors';
+import Navigation from './components/Navigation/Navigation';
+import { NavLink } from 'react-router-dom';
+import { IoMenu } from "react-icons/io5";
 
 function App() {
   const currentUser = useSelector(selectCurrentUser)
+  const [navOpen, setNavOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
 
   if (!currentUser) {
@@ -39,7 +43,20 @@ function App() {
   }
   return (
     <div className="App">
-      <Routes />
+      <div className="App__main">
+        <div className={`App__nav ${navOpen ? "active" : ""}`} onClick={() => setNavOpen(false)} >
+          <Navigation setNavOpen={setNavOpen} />
+        </div>
+        <div className="App__main--top">
+          <div className="App__main--menu" onClick={() => setNavOpen(true)}>
+            <IoMenu />
+          </div>
+          <NavLink exact to="/">
+            <h1>HOLDERFOLIO</h1>
+          </NavLink>
+        </div>
+        <Routes />
+      </div>
     </div>
   );
 }
