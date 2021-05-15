@@ -7,6 +7,8 @@ import { AUTH } from "../../services/authService";
 import { AUTHACTION } from "../../redux/auth/auth-action"
 
 import CustomButton from "../CustomButton/CustomButton";
+import  { setUserToLocalStorage } from "../../helpers/setUser"
+import history from "../../helpers/createBrowserHistory"
 
 import "./Auth.scss";
 import ContainerModalLogin from "../modals/ContainerModalLogin";
@@ -32,6 +34,10 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    Modal.setAppElement('body');
+  }, []);
+
 
   const openModal = () => {
     setIsOpen(true);
@@ -51,8 +57,7 @@ const Login = () => {
       const response = await AUTH.loginService(email, password);
       if (response) {
         dispatch(setCurrentUserAction(response.data.data.user));
-        localStorage.setItem("jwt", JSON.stringify(response.data.token));
-        localStorage.setItem("user", JSON.stringify(response.data.data.user));
+        setUserToLocalStorage(response)
       }
     } catch (err) {
       setError(err?.response?.data?.message);
@@ -60,8 +65,11 @@ const Login = () => {
     setIsLoading(false);
   };
 
-  const handleClick = () => {
-    dispatch(AUTHACTION.loginGoogleAction())
+  const  handleClick = async () => {
+    dispatch(AUTHACTION.loginGoogleAction()).then(res => {
+      res && history.push('/')
+      res && history.go()
+    })
   }
 
 
@@ -86,6 +94,7 @@ const Login = () => {
       <h2 onClick={openModal}>
         Password Forget
         </h2>
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

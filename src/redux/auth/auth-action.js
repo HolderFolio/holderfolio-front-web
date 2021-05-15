@@ -41,15 +41,9 @@ const loginManuel = (email, password) => {
 
 
 const loginGoogleAction = () => {
-  return  dispatch => {
-    return  auth().signInWithPopup(provider).then(result => {
-      var user = result.user;
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      // var token =  user.getIdToken()
-      var token =  user['za']
-      console.log("user", user['za'])
-      console.log("token", token)
+  return dispatch => {
+    return auth().signInWithPopup(provider).then(async result => {
+      var token = result.credential.idToken
       AUTH.loginGoogleService(token).then(res => {
         return res
       })

@@ -7,6 +7,7 @@ const ContainerModalLogin = ({ closeModal }) => {
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e) => {
+    console.log('test')
     AUTH.forgotPasswordService(email)
   };
 
@@ -14,10 +15,10 @@ const ContainerModalLogin = ({ closeModal }) => {
     <div>
       <button onClick={closeModal}>close</button>
       <div>Forget password?</div>
-      <form onSubmit={handleSubmit}>
+      <div>
       <input type="email" id="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <button>send</button>
-      </form>
+        <button  onClick={(e) => handleSubmit(e)}>send</button>
+      </div>
     </div>
   );
 };

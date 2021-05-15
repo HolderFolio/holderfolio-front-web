@@ -1,6 +1,7 @@
 import { client } from ".."
 import { AUTH_ENDPOINTS } from "../constants/EndPoints_API"
-
+import  { setUserToLocalStorage } from "../helpers/setUser"
+import history from "../helpers/createBrowserHistory"
 
 const loginService = (email, password) => {
   const data = {
@@ -12,10 +13,15 @@ const loginService = (email, password) => {
 
 const loginGoogleService = token => {
   const data = { 'idToken': token }
-  console.log(data)
-  return client().post(AUTH_ENDPOINTS.LOGINWITHGOOGLE, token).then(res => {
+  return client().post(AUTH_ENDPOINTS.LOGINWITHGOOGLE, data).then(user => {
+    if (user) {
+      setUserToLocalStorage(user)
+      history.push('/')
+    }
     
+    return true
   }).catch(err => {
+    console.log(err)
   })
 }
 
@@ -30,8 +36,10 @@ const signupService = (name, email, password, passwordConfirm) => {
 }
 
 const forgotPasswordService = email => {
-  const data = { "email": email, }
-  return client().post(AUTH_ENDPOINTS.FORGETPASSWORD, JSON.stringify(data)).then(res => res).catch(error => Promise.reject(error))
+  const data = { "email": email }
+  return client().post(AUTH_ENDPOINTS.FORGETPASSWORD, JSON.stringify(data)).then(res => {
+    return res
+  }).catch(error => Promise.reject(error))
 }
 
 const logoutService = () => {
