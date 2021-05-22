@@ -1,0 +1,46 @@
+@import "../../style/all";
+
+.ExchangeBlockPreview {
+  border-radius: $radius-md;
+  background-color: var(--primary-darker);
+  color: var(--text-white);
+  padding: $padding-md;
+  width: 14rem;
+  height: 100%;
+  flex-shrink: 0;
+  text-align: left;
+
+  &__name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    svg {
+      font-size: 2rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__values {
+    margin-bottom: 5rem;
+    &--main {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    &--value {
+      font-size: 0.8rem;
+      font-weight: lighter;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+
+    &--text {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "../../style/all";
+
+.AssetBlockPreview {
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  gap: 0.5rem 1.5rem;
+  justify-items: center;
+  padding: $padding-md;
+  background-color: var(--bg-medium);
+  border-radius: $radius-md;
+
+  & > svg {
+    font-size: 1.5rem;
+  }
+
+  &__expenses,
+  &__quantity {
+    justify-self: start;
+  }
+
+  &__difference,
+  &__price {
+    justify-self: end;
+  }
+
+  &__expenses,
+  &__difference,
+  &__price {
+    font-weight: bold;
+  }
+
+  &__expenses {
+    font-size: 1.2rem;
+  }
+
+  &__difference {
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+}

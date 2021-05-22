@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
-import { setCurrentUserAction } from "../../redux/auth/auth-action"; 
+import { setCurrentUserAction } from "../../redux/auth/auth-action";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 import "./Navigation.scss";
@@ -33,6 +33,9 @@ const Navigation = ({ setNavOpen }) => {
       </div>
 
       <div className="Navigation__links">
+        <NavLink className="Navigation__links--link" exact to="/" onClick={handleNavClose}>
+          Home
+        </NavLink>
         <NavLink className="Navigation__links--link" exact to="/Settings" onClick={handleNavClose}>
           Personal details
         </NavLink>

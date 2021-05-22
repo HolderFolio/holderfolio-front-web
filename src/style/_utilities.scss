@@ -4,6 +4,12 @@
 .error-text {
   color: var(--error);
 }
+.loose-text {
+  color: var(--loose);
+}
+.win-text {
+  color: var(--win);
+}
 
 .form-group {
   display: flex;

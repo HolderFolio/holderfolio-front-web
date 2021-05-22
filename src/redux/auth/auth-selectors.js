@@ -9,3 +9,11 @@ export const selectUserErrors = createSelector(
   [selectAuth],
   auth => auth.errors && auth.errors
 );
+export const selectUserDevise = createSelector(
+  [selectCurrentUser],
+  user => user?.settings?.devise
+);
+export const selectUserGraphTime = createSelector(
+  [selectCurrentUser],
+  user => user?.preferences?.graphTime
+);

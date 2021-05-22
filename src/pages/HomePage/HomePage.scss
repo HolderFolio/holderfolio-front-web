@@ -1,0 +1,56 @@
+@import "../../style/all";
+
+.HomePage {
+  &__top {
+    padding: $padding-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    svg {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    select {
+      width: 12rem;
+      text-align-last: center;
+    }
+  }
+  &__global-earn {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  &__difference {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  &__switch-time {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+
+    .CustomButton {
+      width: 6rem;
+      font-weight: bold;
+      &:first-of-type {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__exchanges {
+    display: flex;
+    overflow-x: scroll;
+    padding: $padding-md;
+    .ExchangeBlockPreview {
+      margin-right: 1rem;
+    }
+  }
+
+  &__assets {
+    padding: $padding-md;
+    .AssetBlockPreview {
+      margin-bottom: 1rem;
+    }
+  }
+}
